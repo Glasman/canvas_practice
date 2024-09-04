@@ -44,6 +44,13 @@ const player = new Player(x, y, 30, "blue");
 player.draw();
 console.log(player);
 
-window.addEventListener('click', () => {
-    console.log('go')
-})
+addEventListener("click", (event) => {
+  const projectile = new Projectile(
+    event.clientX,
+    event.clientY,
+    5,
+    "red",
+    null
+  );
+  projectile.draw();
+});
