@@ -48,13 +48,15 @@ const y = canvas.height / 2;
 const player = new Player(x, y, 30, "blue");
 player.draw();
 
-const projectile = new Projectile(
-  canvas.width / 2,
-  canvas.height / 2,
-  5,
-  "red",
-  { x: 1, y: 1 }
-);
+const projectiles = []
+
+// const projectile = new Projectile(
+//   canvas.width / 2,
+//   canvas.height / 2,
+//   5,
+//   "red",
+//   { x: 1, y: 1 }
+// );
 
 function animate() {
   requestAnimationFrame(animate);
