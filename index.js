@@ -63,4 +63,4 @@ function animate() {
 }
 
 addEventListener("click", (event) => {});
-animate()
+animate();
