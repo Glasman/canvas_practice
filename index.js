@@ -79,12 +79,12 @@ addEventListener("click", (event) => {
     event.clientX - canvas.width / 2
   );
 
-  console.log(angle)
+ const velocity = {
+    x: Math.cos(angle),
+    y: Math.sin(angle)
+ }
   projectiles.push(
-    new Projectile(canvas.width / 2, canvas.height / 2, 5, "red", {
-      x: 1,
-      y: 1,
-    })
+    new Projectile(canvas.width / 2, canvas.height / 2, 5, "red", velocity)
   );
 });
 animate();
