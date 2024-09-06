@@ -61,10 +61,10 @@ const projectile2 = new Projectile(
   canvas.height / 2,
   5,
   "green",
-  { x:-1, y: -1 }
+  { x: -1, y: -1 }
 );
 
-const projectiles = [projectile, projectile2];
+const projectiles = [];
 
 function animate() {
   requestAnimationFrame(animate);
@@ -73,5 +73,12 @@ function animate() {
   });
 }
 
-addEventListener("click", (event) => {});
+addEventListener("click", (event) => {
+  projectiles.push(
+    new Projectile(canvas.width / 2, canvas.height / 2, 5, "red", {
+      x: 1,
+      y: 1,
+    })
+  );
+});
 animate();
