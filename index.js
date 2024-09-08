@@ -94,9 +94,14 @@ function spawnEnemies() {
     const y = 100;
     const radius = 30;
     const color = "green";
+    const angle = Math.atan2(
+      y - canvas.height / 2,
+      x - canvas.width / 2
+    );
+
     const velocity = {
-      x: 1,
-      y: 1,
+      x: Math.cos(angle),
+      y: Math.sin(angle),
     };
     enemies.push(new Enemy(x, y, radius, color, velocity));
 
@@ -112,9 +117,9 @@ function animate() {
     projectile.update();
   });
 
-  enemies.forEach(enemy => {
-   enemy.update() 
-  })
+  enemies.forEach((enemy) => {
+    enemy.update();
+  });
 }
 
 addEventListener("click", (event) => {
