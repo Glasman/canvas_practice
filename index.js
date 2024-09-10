@@ -114,8 +114,9 @@ function spawnEnemies() {
   }, 1000);
 }
 
+let animationId;
 function animate() {
-  requestAnimationFrame(animate);
+  animationId = requestAnimationFrame(animate);
   c.clearRect(0, 0, canvas.width, canvas.height);
   player.draw();
   projectiles.forEach((projectile) => {
@@ -130,7 +131,7 @@ function animate() {
 
     //end game
     if (dist - enemy.radius - player.radius < 1) {
-      console.log('end game')
+      cancelAnimationFrame(animationId)
     }
 
     projectiles.forEach((projectile, projectileIndex) => {
