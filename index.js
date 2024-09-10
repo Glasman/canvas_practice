@@ -131,7 +131,7 @@ function animate() {
 
     //end game
     if (dist - enemy.radius - player.radius < 1) {
-      cancelAnimationFrame(animationId)
+      cancelAnimationFrame(animationId);
     }
 
     projectiles.forEach((projectile, projectileIndex) => {
