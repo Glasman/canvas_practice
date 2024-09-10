@@ -111,7 +111,6 @@ function spawnEnemies() {
       y: Math.sin(angle),
     };
     enemies.push(new Enemy(x, y, radius, color, velocity));
-
   }, 1000);
 }
 
@@ -126,6 +125,14 @@ function animate() {
   enemies.forEach((enemy, index) => {
     enemy.update();
 
+    //dist between player and enemy
+    const dist = Math.hypot(player.x - enemy.x, player.y - enemy.y);
+
+    //end game
+    if (dist - enemy.radius - player.radius < 1) {
+      console.log('end game')
+    }
+
     projectiles.forEach((projectile, projectileIndex) => {
       const dist = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y);
 
@@ -135,8 +142,7 @@ function animate() {
         setTimeout(() => {
           enemies.splice(index, 1);
           projectiles.splice(index, 1);
-        }, 0)
-    
+        }, 0);
       }
     });
   });
