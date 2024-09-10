@@ -129,7 +129,10 @@ function animate() {
 
     projectiles.forEach((projectile) => {
       const dist = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y);
-      console.log(dist);
+      
+      if (dist - enemy.radius  - projectile.radius < 1) {
+        console.log('remove from screen')
+      }
     });
   });
 }
