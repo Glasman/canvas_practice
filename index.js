@@ -155,7 +155,7 @@ function animate() {
       //when projectiles touch enemy
       if (dist - enemy.radius - projectile.radius < 1) {
         //gets rid of occasional flash on removal of enemy
-        if (enemy.radius > 10) {
+        if (enemy.radius - 10 > 10) {
           enemy.radius -= 10;
           setTimeout(() => {
             projectiles.splice(projectileIndex, 1);
