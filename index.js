@@ -156,7 +156,10 @@ function animate() {
       if (dist - enemy.radius - projectile.radius < 1) {
         //gets rid of occasional flash on removal of enemy
         if (enemy.radius - 10 > 10) {
-          enemy.radius -= 10;
+          gsap.to(enemy, {
+            radius: enemy.radius - 10
+          })
+
           setTimeout(() => {
             projectiles.splice(projectileIndex, 1);
           }, 0);
