@@ -171,12 +171,13 @@ addEventListener("click", (event) => {
     event.clientX - canvas.width / 2
   );
 
+  let projectileSpeedFactor = 4;
   const velocity = {
-    x: Math.cos(angle),
-    y: Math.sin(angle),
+    x: Math.cos(angle) * projectileSpeedFactor,
+    y: Math.sin(angle) * projectileSpeedFactor,
   };
   projectiles.push(
-    new Projectile(canvas.width / 2, canvas.height / 2, 5, "red", velocity)
+    new Projectile(canvas.width / 2, canvas.height / 2, 5, "white", velocity)
   );
 });
 
