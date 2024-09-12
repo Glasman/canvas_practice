@@ -169,7 +169,7 @@ particles.forEach(particle => {
     //dist between player and enemy
     const dist = Math.hypot(player.x - enemy.x, player.y - enemy.y);
 
-    //end game
+    //ends the game
     if (dist - enemy.radius - player.radius < 1) {
       cancelAnimationFrame(animationId);
     }
