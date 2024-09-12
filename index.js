@@ -65,6 +65,28 @@ class Enemy {
   }
 }
 
+class Particle {
+  constructor(x, y, radius, color, velocity) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.color = color;
+    this.velocity = velocity;
+  }
+  draw() {
+    c.beginPath();
+    c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    c.fillStyle = this.color;
+    c.fill();
+  }
+
+  update() {
+    this.draw();
+    this.x = this.x + this.velocity.x;
+    this.y = this.y + this.velocity.y;
+  }
+}
+
 const x = canvas.width / 2;
 const y = canvas.height / 2;
 
@@ -87,10 +109,11 @@ const projectile2 = new Projectile(
 
 const projectiles = [];
 const enemies = [];
+const particles = [];
 
 function spawnEnemies() {
   setInterval(() => {
-    const radius = Math.random() * 30 + 6;
+    const radius = Math.random() * 35 + 6;
 
     let x;
     let y;
@@ -121,7 +144,9 @@ function animate() {
   c.fillStyle = "rgba(0,0,0,0.08)";
   c.fillRect(0, 0, canvas.width, canvas.height);
   player.draw();
-
+particles.forEach(particle => {
+  particle.update()
+})
   projectiles.forEach((projectile, projectileIndex) => {
     projectile.update();
 
@@ -154,11 +179,18 @@ function animate() {
 
       //when projectiles touch enemy
       if (dist - enemy.radius - projectile.radius < 1) {
-        //gets rid of occasional flash on removal of enemy
+        for (let index = 0; index < 8; index++) {
+          particles.push(
+            new Particle(projectile.x, projectile.y, 3, enemy.color, {
+              x: Math.random() - 0.5,
+              y: Math.random() - 0.5,
+            })
+          );
+        }
         if (enemy.radius - 10 > 10) {
           gsap.to(enemy, {
-            radius: enemy.radius - 10
-          })
+            radius: enemy.radius - 10,
+          });
 
           setTimeout(() => {
             projectiles.splice(projectileIndex, 1);
