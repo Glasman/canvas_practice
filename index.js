@@ -90,7 +90,7 @@ const enemies = [];
 
 function spawnEnemies() {
   setInterval(() => {
-    const radius = Math.random() * 26 + 10;
+    const radius = Math.random() * 30 + 6;
 
     let x;
     let y;
@@ -105,7 +105,6 @@ function spawnEnemies() {
 
     const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
     const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x);
-
 
     let speedFactor = 0.9;
     const velocity = {
@@ -153,13 +152,20 @@ function animate() {
     projectiles.forEach((projectile, projectileIndex) => {
       const dist = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y);
 
-      //objects touch
+      //when projectiles touch enemy
       if (dist - enemy.radius - projectile.radius < 1) {
         //gets rid of occasional flash on removal of enemy
-        setTimeout(() => {
-          enemies.splice(enemyIndex, 1);
-          projectiles.splice(projectileIndex, 1);
-        }, 0);
+        if (enemy.radius > 10) {
+          enemy.radius -= 10;
+          setTimeout(() => {
+            projectiles.splice(projectileIndex, 1);
+          }, 0);
+        } else {
+          setTimeout(() => {
+            enemies.splice(enemyIndex, 1);
+            projectiles.splice(projectileIndex, 1);
+          }, 0);
+        }
       }
     });
   });
