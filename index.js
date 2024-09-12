@@ -121,6 +121,11 @@ function animate() {
   player.draw();
   projectiles.forEach((projectile) => {
     projectile.update();
+    if (projectile.x - projectile.radius < 0) {
+      setTimeout(() => {
+        projectiles.splice(index, 1);
+      }, 0)
+    }
   });
 
   enemies.forEach((enemy, index) => {
@@ -142,7 +147,7 @@ function animate() {
         //gets rid of occasional flash on removal of enemy
         setTimeout(() => {
           enemies.splice(index, 1);
-          projectiles.splice(index, 1);
+          projectiles.splice(projectileIndex, 1);
         }, 0);
       }
     });
