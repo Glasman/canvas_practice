@@ -212,7 +212,7 @@ addEventListener("click", (event) => {
     event.clientX - canvas.width / 2
   );
 
-  let projectileSpeedFactor = 4;
+  let projectileSpeedFactor = 4.5;
   const velocity = {
     x: Math.cos(angle) * projectileSpeedFactor,
     y: Math.sin(angle) * projectileSpeedFactor,
