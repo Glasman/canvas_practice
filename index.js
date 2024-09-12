@@ -106,9 +106,11 @@ function spawnEnemies() {
     const color = "green";
     const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x);
 
+
+    let speedFactor = 0.9;
     const velocity = {
-      x: Math.cos(angle),
-      y: Math.sin(angle),
+      x: Math.cos(angle) * speedFactor,
+      y: Math.sin(angle) * speedFactor,
     };
     enemies.push(new Enemy(x, y, radius, color, velocity));
   }, 1000);
