@@ -118,7 +118,7 @@ const particles = [];
 
 function spawnEnemies() {
   setInterval(() => {
-    const radius = Math.random() * 35 + 6;
+    const radius = Math.random() * 33 + 8;
 
     let x;
     let y;
