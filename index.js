@@ -149,8 +149,12 @@ function animate() {
   c.fillStyle = "rgba(0,0,0,0.08)";
   c.fillRect(0, 0, canvas.width, canvas.height);
   player.draw();
-  particles.forEach((particle) => {
-    particle.update();
+  particles.forEach((particle, index) => {
+    if (particle.alpha <= 0) {
+      particles.splice(index, 1)
+    } else {
+      particle.update();
+    }
   });
   projectiles.forEach((projectile, projectileIndex) => {
     projectile.update();
