@@ -189,7 +189,7 @@ function animate() {
       //when projectiles touch enemy
       if (dist - enemy.radius - projectile.radius < 1) {
         //create explosions
-        for (let index = 0; index < 8; index++) {
+        for (let index = 0; index < enemy.radius * 2; index++) {
           particles.push(
             new Particle(
               projectile.x,
