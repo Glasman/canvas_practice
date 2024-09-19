@@ -75,20 +75,20 @@ class Particle {
     this.alpha = 1;
   }
   draw() {
-    c.save()
-    c.globalAlpha = this.alpha
+    c.save();
+    c.globalAlpha = this.alpha;
     c.beginPath();
     c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
     c.fillStyle = this.color;
     c.fill();
-    c.restore()
+    c.restore();
   }
 
   update() {
     this.draw();
     this.x = this.x + this.velocity.x;
     this.y = this.y + this.velocity.y;
-    this.alpha -= 0.01
+    this.alpha -= 0.01;
   }
 }
 
@@ -151,7 +151,7 @@ function animate() {
   player.draw();
   particles.forEach((particle, index) => {
     if (particle.alpha <= 0) {
-      particles.splice(index, 1)
+      particles.splice(index, 1);
     } else {
       particle.update();
     }
@@ -188,12 +188,19 @@ function animate() {
 
       //when projectiles touch enemy
       if (dist - enemy.radius - projectile.radius < 1) {
+        //create explosions
         for (let index = 0; index < 8; index++) {
           particles.push(
-            new Particle(projectile.x, projectile.y, 3, enemy.color, {
-              x: Math.random() - 0.5,
-              y: Math.random() - 0.5,
-            })
+            new Particle(
+              projectile.x,
+              projectile.y,
+              Math.random() * 2,
+              enemy.color,
+              {
+                x: Math.random() - 0.5,
+                y: Math.random() - 0.5,
+              }
+            )
           );
         }
         if (enemy.radius - 10 > 10) {
