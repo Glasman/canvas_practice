@@ -64,7 +64,7 @@ class Enemy {
     this.y = this.y + this.velocity.y;
   }
 }
-const friction = 0.98
+const friction = 0.99
 class Particle {
   constructor(x, y, radius, color, velocity) {
     this.x = x;
