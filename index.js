@@ -189,8 +189,8 @@ function animate() {
     //ends the game
     if (dist - enemy.radius - player.radius < 1) {
       cancelAnimationFrame(animationId);
-      modalEl.style.display = 'flex'
-      bigScoreEl.innerHTML = score
+      modalEl.style.display = "flex";
+      bigScoreEl.innerHTML = score;
     }
 
     projectiles.forEach((projectile, projectileIndex) => {
@@ -258,5 +258,5 @@ addEventListener("click", (event) => {
 startGameBtn.addEventListener("click", () => {
   animate();
   spawnEnemies();
-  modalEl.style.display = 'none'
+  modalEl.style.display = "none";
 });
