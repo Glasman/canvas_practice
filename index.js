@@ -188,6 +188,8 @@ function animate() {
     //ends the game
     if (dist - enemy.radius - player.radius < 1) {
       cancelAnimationFrame(animationId);
+      modalEl.style.display = 'flex'
+
     }
 
     projectiles.forEach((projectile, projectileIndex) => {
