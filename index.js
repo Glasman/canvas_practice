@@ -5,6 +5,7 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 
 const scoreEl = document.querySelector("#scoreEl");
+const startGameBtn = document.querySelector("#startGameBtn");
 
 class Player {
   constructor(x, y, radius, color) {
@@ -212,7 +213,6 @@ function animate() {
           //increase our score
           score += 100;
           scoreEl.innerHTML = score;
-         
 
           gsap.to(enemy, {
             radius: enemy.radius - 10,
@@ -251,5 +251,7 @@ addEventListener("click", (event) => {
   );
 });
 
-animate();
-spawnEnemies();
+startGameBtn.addEventListener("click", () => {
+  animate();
+  spawnEnemies();
+});
