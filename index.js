@@ -128,9 +128,11 @@ function init() {
   enemies = [];
   particles = [];
   score = 0;
-  scoreEl.innerHTML = score
-  bigScoreEl.innerHTML = score
+  scoreEl.innerHTML = score;
+  bigScoreEl.innerHTML = score;
 }
+let enemySpawnRate = 1000; // Default spawn rate: 1 second
+let projectileSpeedFactor = 4.5;
 
 function spawnEnemies() {
   setInterval(() => {
@@ -156,7 +158,7 @@ function spawnEnemies() {
       y: Math.sin(angle) * speedFactor,
     };
     enemies.push(new Enemy(x, y, radius, color, velocity));
-  }, 1000);
+  }, enemySpawnRate);
 }
 
 let animationId;
@@ -254,7 +256,6 @@ addEventListener("click", (event) => {
     event.clientX - canvas.width / 2
   );
 
-  let projectileSpeedFactor = 4.5;
   const velocity = {
     x: Math.cos(angle) * projectileSpeedFactor,
     y: Math.sin(angle) * projectileSpeedFactor,
@@ -265,6 +266,18 @@ addEventListener("click", (event) => {
 });
 
 startGameBtn.addEventListener("click", () => {
+  enemySpawnRate = 1000;
+  projectileSpeedFactor = 4.5; // Double projectile speed for Easy Mode
+  init();
+  animate();
+  spawnEnemies();
+  modalEl.style.display = "none";
+});
+
+// Event listener for Easy Mode button
+document.getElementById("easyModeBtn").addEventListener("click", () => {
+  enemySpawnRate = 2000; // Change spawn rate to 2 seconds
+  projectileSpeedFactor = 6.5; // Increases projectile speed for Easy Mode
   init();
   animate();
   spawnEnemies();
